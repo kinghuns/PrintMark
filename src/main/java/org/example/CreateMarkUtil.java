@@ -9,12 +9,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class CreateMarkUtil {
-
+    private static final Logger logger = LogManager.getLogger(Main.class);
     public static String[] GetProductInfo(String model) {
         return null;
-
     }
 
     public static List<String[]> GetAllProductInfo(String filePath, String fileName) {
@@ -65,7 +66,7 @@ public class CreateMarkUtil {
 //            String amount = selectedMarkInfo[4];
             String temDir = "G:\\Dev\\shippingmark\\data\\" + prefix + "-" + start+ "-" + end;
             System.out.println(temDir + " " +pathMarkOutput);
-            MergeShipMark2File(temDir, pathMarkOutput);
+            MergeShipMark2File(temDir, pathMarkOutput, selectedMarkInfo[12]);
             return true;
         }
         else
@@ -76,7 +77,7 @@ public class CreateMarkUtil {
         //to do:将MarkInfo和ProductInfo抽象，以其集合的方式进行操作，以替代目前的字符串数组
     }
 
-    public static void MergeShipMark2File(String markDir, String saveDir){
+    public static void MergeShipMark2File(String markDir, String saveDir, String fileSeq){
         //new一个list 模拟要合并的word对象集合
         List<File> docFileList = new ArrayList<>();
 
@@ -86,7 +87,8 @@ public class CreateMarkUtil {
         for(File f:fs){					//遍历File[]数组
             if(!f.isDirectory())		//若非目录(即文件)，则打印
                 docFileList.add(f);
-                System.out.println(f);
+//                System.out.println(f);
+                logger.info(f);
         }
 
 //        //String seqWithStart = String.valueOf(i);
@@ -99,7 +101,8 @@ public class CreateMarkUtil {
         //合并之后doc存储路径 此处读的配置文件的存储路径 D:/pdfData/
         String docPath = saveDir;
         //当前日期+UUID作为文件名防止重复
-        String fileName = LocalDate.now() + "-" + UUID.randomUUID().toString().replaceAll("-", "");
+//        String fileName = LocalDate.now() + "-" + UUID.randomUUID().toString().replaceAll("-", "");
+        String fileName = "Main-Mark-LDJ-v2.0-澳德-副本("+ fileSeq +")";
         //合并之后doc存储路径
         String mergeDocUrl = docPath+fileName+".docx";
         //转成file对象
@@ -112,7 +115,8 @@ public class CreateMarkUtil {
             throw new RuntimeException(e);
         }
 
-        System.out.println("合并word成功");
+        System.out.println("合并word成功。" + mergeDocUrl + "已生成。");
+        logger.info("合并word成功。" + mergeDocUrl + "已生成。");
 
     }
     public static void GenSingleFileMarksByProductId(String[] productInfo ){
@@ -142,7 +146,7 @@ public class CreateMarkUtil {
         return prefix + "-" + seqWithStart + ", " + seq + "/" + amount;
     }
 
-    public static void CreateMark(String[] markInfo, String boxNo, String tmpFileName, String tmpDirectory){
+    static void CreateMark(String[] markInfo, String boxNo, String tmpFileName, String tmpDirectory){
         String str = System.currentTimeMillis()+"";
         String fileName = tmpFileName + ".docx";
         String tmpDir = "G:\\Dev\\shippingmark\\data\\" + tmpDirectory ;
@@ -176,6 +180,7 @@ public class CreateMarkUtil {
         }
         LocalDate date = LocalDate.now();
         System.out.println("Document:" + fileName + " had been created. " + date);
+        logger.info("Document:" + fileName + " had been created. " );
 
     }
 

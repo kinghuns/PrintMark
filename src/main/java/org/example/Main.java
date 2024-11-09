@@ -1,40 +1,19 @@
 package org.example;
 
 import com.deepoove.poi.XWPFTemplate;
-import com.deepoove.poi.data.Texts;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 
 
 
 public class Main {
-    private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        //System.out.println("Hello world!");
-        String pathTemplate = "G:\\Dev\\shippingmark\\template\\";
-        String pathMarkOutput = "G:\\Dev\\shippingmark\\output\\";
 
-//        String message = "Hello there!";
-//        logger.trace(message);
-//        logger.debug(message);
-//        logger.info(message);
-//        logger.warn(message);
-//        logger.error(message);
-//        logger.fatal(message);
+//        String pathTemplate = "G:\\Dev\\shippingmark\\template\\";
+//        String pathMarkOutput = "G:\\Dev\\shippingmark\\output\\";
 
        //MapTemplate();
 //        CreateMarkUtil.CreateShipMarkByProduct(9);
@@ -46,6 +25,11 @@ public class Main {
 //        CreateMarkUtil.CreateShipMarkByProduct(14);
 //        CreateMarkUtil.CreateShipMarkByProduct(15);
 //        CreateMarkUtil.CreateShipMarkByProduct(16);
+        CreateMarkUtil.CreateShipMarkByProduct(47);
+//        for (int i = 44; i<=45; i++)
+//        {
+//            CreateMarkUtil.CreateShipMarkByProduct(i);
+//        }
     }
 
     public static void TestXWPFTemplate(){
@@ -69,7 +53,7 @@ public class Main {
 //        if (!file.exists()){ //如果不存在
 //            boolean dr = file.mkdirs(); //创建目录
 //        }
-        String fileName = String.valueOf(System.currentTimeMillis())+".docx";
+        String fileName = System.currentTimeMillis() +".docx";
         //以文件形式输出
         try {
                 template.writeToFile(pathMarkOutput +"\\" + fileName);
