@@ -23,8 +23,8 @@ public class Main {
 //        CreateMarkUtil.CreateShipMarkByProduct(12);
 //        CreateMarkUtil.CreateShipMarkByProduct(13);
 //        CreateMarkUtil.CreateShipMarkByProduct(14);
-//        CreateMarkUtil.CreateShipMarkByProduct(15);
-//        CreateMarkUtil.CreateShipMarkByProduct(16);
+        CreateMarkUtil.CreateShipMarkByProduct(25);
+        CreateMarkUtil.CreateShipMarkByProduct(17);
         CreateMarkUtil.CreateShipMarkByProduct(47);
 //        for (int i = 44; i<=45; i++)
 //        {
